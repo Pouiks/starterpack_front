@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import { Container, Typography, Grid } from "@mui/material";
-import ArticleCard from '../ArticleCard';
 import ArticleCardMini from '../ArticleCardMini';
 import ArticleTemplate from '../ArticleTemplate';
+import CategoryLoop from '../../CategoryLoop';
 import { useParams } from 'react-router-dom'  ; 
 import axios from 'axios';
 import './selectedArticle.css';
@@ -29,22 +29,23 @@ const SelectedArticle = () => {
 
 
     return(
-        <Container maxWidth="xxl" >
-            <Container maxWidth="lg" className="selectedArticle_container">
-                <p>SELECTION DES CATEGORIE</p>
+        <Container maxWidth="xl" sx={{display:'flex', flexDirection:'column', bgcolor:"#F5FFFA"}}>
+            <Container maxWidth="md" className="selectedArticle_container" sx={{display: 'flex', flexDirection: 'column', marginLeft:0}}>
+                <Typography variant="h4" sx={{marginBottom:'20px'}}>Découvrez par catégorie</Typography>
+                <CategoryLoop />
             </Container>
     
         <Grid container spacing={2}>
 
-            <Grid item xs={10} >
+            <Grid item xs={9} >
             <Container>
 
             <ArticleTemplate />
 
             </Container>
             </Grid>
-            <Grid item xs={2} sx={{  scrollable: true}}>
-                <Container sx={{display:"flex", flexDirection:"column", borderLeft:"1rem solid orange"}}>
+            <Grid item xs={3} sx={{  scrollable: true}}>
+                <Container maxWidth="xl" sx={{display:"flex", flexDirection:"column", borderLeft:"1rem solid orange"}}>
                     <Typography variant="h4">Suggestions</Typography>
                     <ArticleCardMini />
                     <ArticleCardMini />

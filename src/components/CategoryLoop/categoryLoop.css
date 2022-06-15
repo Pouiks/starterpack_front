@@ -1,0 +1,13 @@
+.category_icon{
+    max-width: 150px;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 0 5px;
+    background-color: orange;
+    cursor: grab;
+}
+
+.category_icon:hover{
+    background-color: rgb(247, 183, 65);
+}

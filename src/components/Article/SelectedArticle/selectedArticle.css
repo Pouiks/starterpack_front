@@ -1,2 +1,5 @@
 .selectedArticle_container{
+    vertical-align: left;
+    text-align: left;
+    align-items: left;
 }
