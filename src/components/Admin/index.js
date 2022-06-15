@@ -1,8 +1,10 @@
 
-import React from 'react';
+import React, { useState, useReducer, useEffect } from 'react';
 import { Container, Typography, Grid, Link } from "@mui/material";
 import Accordion from '@mui/material/Accordion';
 import AdminTable from './AdminTable';
+import CreateArticle from './CreateArticle';
+import ArticlePreview from './ArticlePreview';
 
 import AccordionComponent from './AccordionComponent';
 import './admin.css';
@@ -17,7 +19,7 @@ function Admin () {
             subitle:[
                 {
                     title:"Creer un article",
-                    link:""
+                    link:"createArticle"
                 },
                 {
                     title:"Editer un article",
@@ -36,7 +38,7 @@ function Admin () {
             subitle:[
                 {
                     title:"Creer un Utilisateur",
-                    link:""
+                    link:"createArticle"
                 },
                 {
                     title:"Editer un Utilisateur",
@@ -88,6 +90,34 @@ function Admin () {
             noIcon: false
         },
     ]
+    const initialState = "accueil"
+    const [displayPage, setDisplayPage] = useState("");
+    const [articleId, setArticleId] = useState(0);
+
+    function display(){
+        switch(displayPage){
+            case "":
+                return <AdminTable sendData={getData}/>; 
+            case "accueil":
+                return <AdminTable sendData={getData}/>; 
+            case "createArticle": 
+                return <CreateArticle sendData={getData}/>;
+            case "articlePreview": 
+                return <ArticlePreview sendData={getData} article={articleId}/>;
+        }
+    }
+    function getData(val){
+        setDisplayPage(val);
+    }
+    function getArticleId(val){
+        setArticleId(val);
+    }
+
+
+    useEffect(() => {
+        console.log("DISPLAY PAGE : ",displayPage)
+    }, [displayPage])
+
 
     return (
         <Grid container spacing={2}>
@@ -95,14 +125,13 @@ function Admin () {
             <Grid item xs={2} className="admin_body_leftbar">
             <Container>
                 <Accordion  className="admin_body_accordion-first">
-
-                    <Link href="/" className="admin_body_accordion-first">Accueil</Link>
+                    <Link onClick={() => setDisplayPage("accueil")} className="admin_body_accordion-first">Accueil</Link>
                 </Accordion>
             </Container>
-                {articlePart.map((item, index) => <AccordionComponent key={index} title={item.title} subtitle={item.subitle}/>)}
+                {articlePart.map((item, index) => <AccordionComponent key={index} title={item.title} subtitle={item.subitle} sendData={getData} sendArticle={getArticleId} />)}
             </Grid>
             <Grid item xs={10} className="admin_body_center">
-                <AdminTable />
+                {display()}
             </Grid>
         </Grid>
     )

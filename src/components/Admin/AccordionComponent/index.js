@@ -8,8 +8,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import '../admin.css'
 
 
-const AccordionComponent = ({title, subtitle, link, noIcon}) => {
-
+const AccordionComponent = ({title, subtitle, sendData}) => {
+    function demoMethod(value){
+        sendData(value);
+      }
     return(
         <Container>
         <Accordion className="admin_body_accordion">
@@ -22,7 +24,7 @@ const AccordionComponent = ({title, subtitle, link, noIcon}) => {
            </AccordionSummary>
             <AccordionDetails sx={{display:"flex", flexDirection:"column"}}>
                 {subtitle && subtitle.map((item, index) => (
-                <Link underline="hover" href={item.link} key={index} className="admin_body_accordion-text">
+                <Link underline="hover" onClick={() => demoMethod(item.link)} key={index} className="admin_body_accordion-text">
                     {item.title}
                 </Link>
                 ))}

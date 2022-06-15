@@ -4,25 +4,27 @@
 
 
 import { Container, Typography } from "@mui/material";
-import ArticleCard from '../ArticleCard';
+import ArticleCard from '../../components/Article/ArticleCard';
 
 function Home() {
 
   const url = "http://localhost:8080/articles";
 
-  const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
-  useEffect(() => {
-    console.log('inside useEffect');
     const fetchData = async () => {
       const response = await axios.get(url);
+      console.log("je lance une requete ARTICLES");
 
       console.log(response.data.articles);
       setData(response.data.articles);
     }
-    fetchData();
 
-   }, []);
+
+    useEffect(() => {
+      console.log('init Home');
+
+    }, []);
 
   return (
     <div>
@@ -33,7 +35,7 @@ function Home() {
     </Container>
     <Container direction="row" sx={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
       {data && 
-        data.map((item) => <ArticleCard key={item.id} title={item.title} content={item.content} description={item.description}/>
+        data.map((item) => <ArticleCard key={item.id} {...item}/>
       )}
     </Container>
     <Container>

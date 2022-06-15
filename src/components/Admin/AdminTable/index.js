@@ -14,55 +14,98 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import axios from 'axios';
 
 
-const AdminTable = () => {
-    const url = "http://localhost:8080/articles";
+const AdminTable = ({sendData, sendArticle}) => {
+    const baseUrl = "http://localhost:8080";
+
+    const [refresh, setRefresh] = useState(false);
 
     const [data, setData] = useState([]);
 
-    useEffect(() => {
-      console.log('inside useEffect');
-      const fetchData = async () => {
-        const response = await axios.get(url);
+    // function getArticle(value){
+    //    sendArticle(value);
+    //     console.log(value);
+    //  }
+    function getPath(value){
+        sendData(value);
+    }
+
+
+
+    const setOnline = async (id) => {
+        try{
+            await axios.put(`${baseUrl}/article/setOnline/${id}`);
+            setRefresh(!refresh);
+        }catch(error){
+            console.log(error);
+        }
+    }
+
+    const setOffline = async (id) => {
+        try {
+            await axios.put(`${baseUrl}/article/setOffline/${id}`);
+            setRefresh(!refresh);
+        } catch(error){
+            console.log(error);
+        }
+    }
+    const fetchData = async () => {
+        const response = await axios.get(`${baseUrl}/articles`);
   
         console.log(response.data.articles);
         setData(response.data.articles);
       }
+    useEffect(() => {
+      console.log('inside useEffect');
+
       fetchData();
   
-     }, []);
+     }, [refresh]);
+
 return (
     <Container maxWidth="xl">
         <TableContainer component={Paper} sx={{boxShadow: true}}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
             <TableRow>
-                <TableCell>Titre</TableCell>
-                <TableCell align="right">Contenu</TableCell>
-                <TableCell align="right">Description</TableCell>
-                <TableCell align="right">Likes</TableCell>
-                <TableCell align="right">En ligne</TableCell>
-                <TableCell align="right">Action</TableCell>
-                <TableCell align="right">Consulter</TableCell>
+                <TableCell align="center">id</TableCell>
+                <TableCell align="center">Titre</TableCell>
+                <TableCell align="center">Contenu</TableCell>
+                <TableCell align="center">Description</TableCell>
+                <TableCell align="center">Likes</TableCell>
+                <TableCell align="center">En ligne</TableCell>
+                <TableCell align="center">Action</TableCell>
+                <TableCell align="center">Consulter</TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
             {data.map((item) => (
                 <TableRow
-                key={item.title}
+                key={item.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                <TableCell component="th" scope="row">
+                <TableCell align="center" component="th" scope="row">
+                    {item.id}
+                </TableCell>
+                <TableCell align="center" component="th" scope="row">
                     {item.title}
                 </TableCell>
-                <TableCell align="right">{item.content}</TableCell>
-                <TableCell align="right">{item.description}</TableCell>
-                <TableCell align="right">{item.like}</TableCell>
-                <TableCell align="right">{item.isOnline ? <DoneIcon sx={{color:"green"}} /> : <CancelIcon sx={{color:"red"}} onClick={() => console.log(`Je change l'état en ${!item.isOnline}`)}/>}</TableCell>
-                <TableCell align="right">
-                    <DeleteIcon sx={{color: "red"}} onClick={() => console.log(`delete article ${item.id}`)}/>
+                <TableCell align="center">{item.content}</TableCell>
+                <TableCell align="center">{item.description}</TableCell>
+                <TableCell align="center">{item.like}</TableCell>
+                <TableCell sx={{ cursor: "grab"}} align="center" onClick={() => item.is_online ? setOffline(item.id) : setOnline(item.id)}>
+                    {item.is_online ? <DoneIcon sx={{color:"green"}} /> : <CancelIcon sx={{color:"red"}}/> }
                 </TableCell>
-                <TableCell align="right">
-                    <VisibilityIcon sx={{color: "blue"}} onClick={() => console.log(`Visionner article ${item.id}`)}/>
+                <TableCell align="center">
+                    <DeleteIcon sx={{color: "red",  cursor: "grab"}} onClick={() => console.log(`delete article ${item.id}`)}/>
+                </TableCell>
+                <TableCell align="center">
+                    <VisibilityIcon 
+                        sx={{color: "blue", cursor: "grab"}} 
+                        onClick={()=>{
+                            getPath("articlePreview");
+                            sendArticle(item.id);
+                        }
+                    } />
                 </TableCell>
                 </TableRow>
             ))}
