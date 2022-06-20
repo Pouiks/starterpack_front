@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Stack, TextField } from "@mui/material";
 
 const ArticlePreview = ({article}) => {
-    console.log(article);
+    console.log("article",article);
     return (
         <Container maxWidth="xl">
         <Stack spacing={2}>

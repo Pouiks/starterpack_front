@@ -21,10 +21,7 @@ const AdminTable = ({sendData, sendArticle}) => {
 
     const [data, setData] = useState([]);
 
-    // function getArticle(value){
-    //    sendArticle(value);
-    //     console.log(value);
-    //  }
+
     function getPath(value){
         sendData(value);
     }
@@ -36,7 +33,7 @@ const AdminTable = ({sendData, sendArticle}) => {
             await axios.put(`${baseUrl}/article/setOnline/${id}`);
             setRefresh(!refresh);
         }catch(error){
-            console.log(error);
+            console.log("error: ", error);
         }
     }
 
@@ -45,13 +42,13 @@ const AdminTable = ({sendData, sendArticle}) => {
             await axios.put(`${baseUrl}/article/setOffline/${id}`);
             setRefresh(!refresh);
         } catch(error){
-            console.log(error);
+            console.log("error: ", error);
         }
     }
     const fetchData = async () => {
         const response = await axios.get(`${baseUrl}/articles`);
   
-        console.log(response.data.articles);
+        console.log("response.data.articles",response.data.articles);
         setData(response.data.articles);
       }
     useEffect(() => {

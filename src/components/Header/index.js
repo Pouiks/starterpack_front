@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import { AppBar, Toolbar, Button, Typography, Container } from "@mui/material";
 
@@ -9,8 +9,12 @@ import logo from './logo_size.png'
 // import useLocalStorage from "../../hooks/useLocalStorage";
 // import { PointOfSale } from "../../types";
 
-function Header(navigation) {
+function Header({user}) {
 //   const [selectedPointOfSale] = useLocalStorage<PointOfSale>('pointOfSale', { id: null, label: null });
+console.log("USER  : ",user)
+
+
+
 
 
   return (
@@ -22,9 +26,10 @@ function Header(navigation) {
               <Button color="inherit" component={Link} to="/"><img src={logo}  alt="logo du site" component={Link} to="/"/></Button>
                 <Button color="inherit" component={Link} to="/categories">Rechercher par catégorie</Button>
                 <Button color="inherit" component={Link} to="/end-rent">Proposer un starterPack</Button>
-                <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
+                { user ? <Typography>Bienvenue {user}</Typography> : <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
+
+                }
               </Container>
-              {/* <Typography>Point de vente selectionné : {selectedPointOfSale.label}</Typography> */}
           </Toolbar>
       </AppBar >
   );

@@ -115,7 +115,6 @@ function Admin () {
 
 
     useEffect(() => {
-        console.log("DISPLAY PAGE : ",displayPage)
     }, [displayPage])
 
 

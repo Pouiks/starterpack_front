@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import { Container, Typography, Grid } from "@mui/material";
+import { Container, Typography, Grid, Divider } from "@mui/material";
 import ArticleCardMini from '../ArticleCardMini';
 import ArticleTemplate from '../ArticleTemplate';
+import Spacer from '../../Spacer';
+import AddComment from '../../AddComment';
 import CategoryLoop from '../../CategoryLoop';
 import { useParams } from 'react-router-dom'  ; 
 import axios from 'axios';
@@ -25,6 +27,7 @@ const SelectedArticle = () => {
 
     useEffect(() => {
         console.log('init SelectedArticle');
+        getArticle(id);
     }, [])
 
 
@@ -41,6 +44,11 @@ const SelectedArticle = () => {
             <Container>
 
             <ArticleTemplate />
+            <Spacer taille={"50px"}/>
+            <Divider />
+            <Spacer taille={"50px"}/>
+
+            <AddComment />
 
             </Container>
             </Grid>
