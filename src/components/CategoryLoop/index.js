@@ -14,14 +14,12 @@ import './categoryLoop.css'
 
 
 
-const CategoryLoop = ({getName}) => {
+const CategoryLoop = ({getName, refreshPage}) => {
 
     const [categories, setCategories] = useState();
 
     const displayCategoryIcons = (name) => {
         switch(name){
-            case "tous":
-                return <AllInclusiveIcon fontSize="large" label="All articles" sx={{ color: "white" }}/>;
             case "Voyages":
                 return <FlightIcon  fontSize="large" label="Voyages" sx={{ color: "white" }}/>;
             case "Technologies":
@@ -41,8 +39,9 @@ const CategoryLoop = ({getName}) => {
     }
 
     
-    
-    
+    const refresh = () => {
+        refreshPage();
+    }
     const fetchCategories = async () => {
         const URL = "http://localhost:8080/categories";
         const response = await axios.get(URL);
@@ -56,12 +55,13 @@ const CategoryLoop = ({getName}) => {
     return(
         <>
             <Container maxWidth="md" sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
-                 <Box  className="category_icon" onClick={() => getName("Tous")} sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                 <Box  className="category_icon" onClick={() => refresh()} sx={{display: 'flex', flexDirection: 'column',  alignItems: 'center',minWidth:'100px'}}>
+                    <AllInclusiveIcon fontSize="large" label="Tous" sx={{ color: "white" }}/>
                     <Typography variant="body1" color="white">Tous</Typography>
 
                 </Box>
                 { categories && categories.map((category) => 
-                    <Box key={category.id} onClick={() =>getName(category.name)} className="category_icon" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                    <Box key={category.id} onClick={() =>getName(category.name)} className="category_icon" sx={{display: 'flex', flexDirection: 'column', alignItems: 'center',  minWidth:'100px'}}>
                     {displayCategoryIcons(category.name)}
                     <Typography variant="body1" color="white">{category.name}</Typography>
 

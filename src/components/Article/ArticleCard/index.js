@@ -27,7 +27,6 @@ export default function ArticleCard(item) {
       <CardActionArea>
         
         <CardMedia
-          square
           component="img"
           height="194"
           src={item.image || "https://images.unsplash.com/photo-1655117041830-533c495ae7b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1NTQ2MTU5NQ&ixlib=rb-1.2.1&q=80&w=1080"}

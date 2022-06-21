@@ -8,7 +8,6 @@ import logo from './logo_size.png'
 
 
 function Header({user}) {
-console.log("USER  : ",user)
 
   return (
       <AppBar component="header" position="sticky" sx={{ mb: 4 }} color="inherit">
@@ -19,9 +18,10 @@ console.log("USER  : ",user)
               <Button color="inherit" component={Link} to="/"><img src={logo}  alt="logo du site" component={Link} to="/"/></Button>
                 <Button color="inherit" component={Link} to="/categories">Rechercher par catégorie</Button>
                 <Button color="inherit" component={Link} to="/end-rent">Proposer un starterPack</Button>
-                { user ? <Typography>Bienvenue {user}</Typography> : <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
+                {/* { user ? <Typography>Bienvenue {user}</Typography> : <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
 
-                }
+                } */}
+                <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
               </Container>
           </Toolbar>
       </AppBar >

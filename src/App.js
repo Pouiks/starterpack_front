@@ -20,7 +20,6 @@ const ROLES = {
 
 function App() {
   const { token, setToken } = useToken();
-  console.log("resfresh " ,token);
 
   const [user, setUser] = useState();
 
