@@ -6,16 +6,9 @@ import { Link } from "react-router-dom";
 import logo from './logo_size.png'
 
 
-// import useLocalStorage from "../../hooks/useLocalStorage";
-// import { PointOfSale } from "../../types";
 
 function Header({user}) {
-//   const [selectedPointOfSale] = useLocalStorage<PointOfSale>('pointOfSale', { id: null, label: null });
 console.log("USER  : ",user)
-
-
-
-
 
   return (
       <AppBar component="header" position="sticky" sx={{ mb: 4 }} color="inherit">

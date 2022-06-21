@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React, {useEffect}  from 'react';
 import { Navigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+
 
 
 import Card from '@mui/material/Card';
@@ -10,7 +11,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import CardActionArea from '@mui/material/CardActionArea';
 import Avatar from '@mui/material/Avatar';
-import {Typography} from '@mui/material';
+import {Typography, Chip} from '@mui/material';
 import { red } from '@mui/material/colors';
 
 
@@ -20,9 +21,9 @@ export default function ArticleCard(item) {
 
 
   return (
-    <Link to={`/article/${item.id}`}>
+    <Link to={`/article/${item.id}`} >
 
-      <Card sx={{ maxWidth: 305, marginTop: 5}} onClick={() => console.log(item.id)} >
+      <Card sx={{ maxWidth: 305, marginTop: 5}} onClick={() => console.log(item.id)}>
       <CardActionArea>
         
         <CardMedia
@@ -33,13 +34,14 @@ export default function ArticleCard(item) {
           alt="Image de l'article"
         />
           <CardContent>
+          <Chip label={item.category_name} color="warning" sx={{color:"white"}}/>
             <Typography variant="body1" color="text.secondary">
-              {item.title}
+              {item.title} 
             </Typography>
         </CardContent>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            Description de l'article du blog
+            {item.description}
           </Typography>
         </CardContent>
         <CardHeader
@@ -50,7 +52,7 @@ export default function ArticleCard(item) {
           }
 
           title="Admin"
-          subheader="September 14, 2016 | 5 min to read"
+          subheader={`${item.created_at}| 5 min to read`}
         />
         <CardActions disableSpacing>
 

@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import SelectedArticle from './components/Article/SelectedArticle';
 import Header from './components/Header';
+import Articles from './pages/Articles';
 import Admin from './components/Admin';
 import ForgotPassword from './components/ForgotPassword';
 import SignOrCreate from './pages/SignOrCreate';
@@ -43,6 +44,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Home />} />
+        <Route path="/articles" element={<Articles />} />
         <Route path="/admin/editor" element={<Admin />} />
         <Route path="/article/:id" element={<SelectedArticle />} />
         <Route path="/connexion" element={<SignOrCreate />} />
