@@ -13,6 +13,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Avatar from '@mui/material/Avatar';
 import {Typography, Chip} from '@mui/material';
 import { red } from '@mui/material/colors';
+import './articleCard.css';
 
 
 
@@ -21,9 +22,9 @@ export default function ArticleCard(item) {
 
 
   return (
-    <Link to={`/article/${item.id}`} >
+    <Link to={`/article/${item.id}`} state= {{title: item.title, description: item.description, content: item.content}} className="articleCard_link">
 
-      <Card sx={{ maxWidth: 305, marginTop: 5}} onClick={() => console.log(item.id)}>
+      <Card sx={{ maxWidth: 305, maxHeight:550, minHeight:550, marginTop: 5, boxShadow:3}} onClick={() => console.log(item.id)}>
       <CardActionArea>
         
         <CardMedia
@@ -32,13 +33,13 @@ export default function ArticleCard(item) {
           src={item.image || "https://images.unsplash.com/photo-1655117041830-533c495ae7b5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY1NTQ2MTU5NQ&ixlib=rb-1.2.1&q=80&w=1080"}
           alt="Image de l'article"
         />
-          <CardContent>
+          <CardContent sx={{minHeight:110, maxHeight:110}}>
           <Chip label={item.category_name} color="warning" sx={{color:"white"}}/>
-            <Typography variant="body1" color="text.secondary">
+            <Typography variant="h6" color="text.secondary">
               {item.title} 
             </Typography>
         </CardContent>
-        <CardContent>
+        <CardContent sx={{minHeight:110, maxHeight:110}}>
           <Typography variant="body2" color="text.secondary">
             {item.description}
           </Typography>

@@ -14,12 +14,9 @@ const Articles = () => {
     const fetchData = async () => {
         const URL = 'http://localhost:8080/articles';
         const response = await axios.get(URL);
-        console.log("je lance une requete ARTICLES");
   
-        console.log("response.data.articles",data);
         setData(response.data);
         setFilteredCategory(response.data);
-        console.log("response.data.articles",filteredCategory);
         }
 
 // Je recupere le category_name au clic sur la catégorie
@@ -51,7 +48,7 @@ const Articles = () => {
     
     return(
         <Container maxWidth="xl" sx={{alignItems:"center"}}>
-            <Container>
+            <Container maxWidth="xl">
                 <CategoryLoop getName={getName} refreshPage={refreshPage}/>
             </Container>
             <Container>

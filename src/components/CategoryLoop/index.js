@@ -25,11 +25,11 @@ const CategoryLoop = ({getName, refreshPage}) => {
             case "Technologies":
                 return <SettingsEthernetIcon fontSize="large" label="Technologies" sx={{ color: "white" }}/>;
             case "Sorties":
-                return <NightlifeIcon  fontSize="large" label="Idée de sortie" sx={{ color: "white" }}/>;
+                return <NightlifeIcon  fontSize="large" label="Sorties" sx={{ color: "white" }}/>;
             case "Animaux": 
                 return <PetsIcon fontSize="large" label="Animaux" sx={{ color: "white" }}/>;
             case "Epanouissements":
-                return <AccessibilityNewIcon fontSize="large" label="Developpement personnel" sx={{ color: "white" }}/>;
+                return <AccessibilityNewIcon fontSize="large" label="Epanouissements" sx={{ color: "white" }}/>;
             case "Sciences":
                 return <ScienceIcon fontSize="large" label="Sciences" sx={{ color: "white" }}/>;
             case "Sports":
@@ -45,7 +45,6 @@ const CategoryLoop = ({getName, refreshPage}) => {
     const fetchCategories = async () => {
         const URL = "http://localhost:8080/categories";
         const response = await axios.get(URL);
-        console.log(response.data.categories);
         setCategories(response.data.categories);
     
     }
@@ -54,7 +53,7 @@ const CategoryLoop = ({getName, refreshPage}) => {
     }, [])
     return(
         <>
-            <Container maxWidth="md" sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
+            <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
                  <Box  className="category_icon" onClick={() => refresh()} sx={{display: 'flex', flexDirection: 'column',  alignItems: 'center',minWidth:'100px'}}>
                     <AllInclusiveIcon fontSize="large" label="Tous" sx={{ color: "white" }}/>
                     <Typography variant="body1" color="white">Tous</Typography>
@@ -67,7 +66,13 @@ const CategoryLoop = ({getName, refreshPage}) => {
 
                 </Box>
                 )}
+
             </Container>
+            <Container maxWidth="xl" sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around', mt:2 }}>
+            <Typography variant="subtitle2" color="grey" center>Cliquez pour trier par catégorie</Typography>
+
+            </Container>
+
             <Divider sx={{marginTop:"40px"}}/>
 
         </>

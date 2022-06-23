@@ -28,16 +28,16 @@ function Home() {
     }, []);
 
   return (
-    <Container maxWidth="xl" sx={{alignItems:"center"}}>
-      <Container >
-          <img width="100%" height="400px"src="/assets/images/SPaccueil.png"/>
+    <Container maxWidth="xl" >
+      <Container sx={{ display:{xs:"none", md:"none",lg:"block"}}}>
+          <img width="100%" height="400px"src="/assets/images/baniereSP.png"/>
         </Container>
-      <Container>
-          <Typography variant="h2" color="text.primary">
-              Derniers ajouts <Link href="/articles" sx={{textDecoration: "none", fontSize:20}}>Voir tous</Link>
+      <Container maxWidth="xl">
+          <Typography variant="h2" color="text.primary" sx={{textDecoration: "none", fontSize:{xs: "30px", sm:"40px", md:"45px", xl: "45px"}}} >
+              Derniers ajouts <Link href="/articles" sx={{textDecoration: "none", fontSize:{xs: "20px", sm:"12px", md:"25", xl: "30px"}} }>Voir tous</Link>
           </Typography>
-      </Container>
-      <Grid container maxWidth="xl" direction="row" >
+      </Container >
+      <Grid container maxWidth="xl" direction="row" sx={{display:"flex", verticalAlignment:"center", justifyContent: "center"}}>
         {data && 
           data.map((article) => 
           <Grid item xl={3}>
@@ -45,28 +45,28 @@ function Home() {
           </Grid>
         )}
       </Grid>
-      <Container>
-          <Typography variant="h2" color="text.primary">
-              Les mieux notés
+      <Container maxWidth="xl">
+          <Typography variant="h2" color="text.primary" sx={{margin:"30px 0 0 0", fontSize:{xs: "30px", sm:"40px", md:"45px", xl: "45px"}}}>
+              Les plus liké 
           </Typography>
       </Container>
-      <Grid container maxWidth="xl" direction="row" >
-          <Grid item xl={4}>
+      <Grid container maxWidth="xl" direction="row" sx={{display:"flex", verticalAlignment:"center", justifyContent: "center"}}>
+          <Grid item xl={3}>
               <ArticleCard title="Article 1" /> 
           </Grid>
-          <Grid item xl={4}>
+          <Grid item xl={3}>
               <ArticleCard title="Article 1" /> 
           </Grid>
-          <Grid item xl={4}>
+          <Grid item xl={3}>
               <ArticleCard title="Article 1" /> 
           </Grid>
-          <Grid item xl={4}>
+          <Grid item xl={3}>
               <ArticleCard title="Article 1" /> 
           </Grid>
-          <Grid item xl={4}>
+          <Grid item xl={3}>
               <ArticleCard title="Article 1" /> 
           </Grid>
-          <Grid item xl={4}>
+          <Grid item xl={3}>
               <ArticleCard title="Article 1" /> 
           </Grid>
       </Grid>

@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 
     
 const CreateAccount = ({changePage}) => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setconfirmPassword] = useState('');
@@ -16,7 +17,9 @@ const CreateAccount = ({changePage}) => {
     const [ sent, setSent] = useState(false);
     const [text, setText] = useState("");
 
-  
+    const handleNameChange = (e) => {
+      setName(e.target.value);
+    }
     const handleEmailChange = (e) => {
       setEmail(e.target.value);
     }
@@ -45,7 +48,7 @@ const CreateAccount = ({changePage}) => {
         setError('Les mots de passe ne correspondent pas');
       } else {
         await axios.post('http://localhost:8080/user/create', {
-          name: 'michel',
+          name: name,
           email: email,
           password: password,
           role: 'user'
@@ -62,9 +65,17 @@ const CreateAccount = ({changePage}) => {
     }, [])
     return(
         <>
-        <Typography variant="h5">Connexion à mon compte</Typography> 
+        <Typography variant="h5">Création d'un compte</Typography> 
         <FormControl sx={{display:"flex", justifyContent:"space-between"}}>
           <TextField
+              label="Un prénom"
+              required
+              sx={{margin:"10px 0"}}
+              value={name}
+              onChange={handleNameChange}
+              />
+
+            <TextField
               label="Votre adresse email"
               required
               sx={{margin:"10px 0"}}

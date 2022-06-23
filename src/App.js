@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import SelectedArticle from './components/Article/SelectedArticle';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Articles from './pages/Articles';
 import Admin from './components/Admin';
 import ForgotPassword from './components/ForgotPassword';
@@ -50,6 +51,7 @@ function App() {
         <Route path="/reset-password" element={<ForgotPassword />} />
         <Route path="*" />
       </Routes>
+      <Footer />
     </>
   );
 }

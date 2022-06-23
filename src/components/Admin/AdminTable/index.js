@@ -74,7 +74,7 @@ return (
                 <TableCell align="center">Consulter</TableCell>
             </TableRow>
             </TableHead>
-            <TableBody>
+            {/* <TableBody>
             {data.map((item) => (
                 <TableRow
                 key={item.id}
@@ -106,7 +106,7 @@ return (
                 </TableCell>
                 </TableRow>
             ))}
-            </TableBody>
+            </TableBody> */}
         </Table>
         </TableContainer>
     </Container>
