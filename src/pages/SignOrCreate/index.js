@@ -41,7 +41,7 @@ const displayPage = (valueToDecide) => {
     return (
 
             <Container maxWidth="md" > 
-                <Container className="log_container" sx={{width:'450px', height:"500px", marginTop:'60px', borderRadius:"10px", display:"flex", flexDirection:"column", justifyContent:"space-around"}}>
+                <Container className="log_container" sx={{width:'550px', height:"850px", marginTop:'60px', borderRadius:"10px", display:"flex", flexDirection:"column", justifyContent:"space-evenly", verticalAlignment:"center"}}>
                 {displayPage(valueToDecide)}
                 </Container>
             </Container>

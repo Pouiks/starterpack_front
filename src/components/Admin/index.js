@@ -90,9 +90,8 @@ function Admin () {
             noIcon: false
         },
     ]
-    const initialState = "accueil"
     const [displayPage, setDisplayPage] = useState("");
-    const [articleId, setArticleId] = useState(0);
+    const [articleId, setArticleId] = useState("");
 
     function display(){
         switch(displayPage){
@@ -103,15 +102,20 @@ function Admin () {
             case "createArticle": 
                 return <CreateArticle sendData={getData}/>;
             case "articlePreview": 
-                return <ArticlePreview sendData={getData} article={articleId}/>;
+                return <ArticlePreview sendData={getData} />;
         }
     }
-    function getData(val){
+    function getData(val, id){
+        setArticleId(id)
         setDisplayPage(val);
+
+        
     }
     function getArticleId(val){
-        setArticleId(val);
+        console.log(val);
+
     }
+
 
 
     useEffect(() => {
@@ -127,7 +131,7 @@ function Admin () {
                     <Link onClick={() => setDisplayPage("accueil")} className="admin_body_accordion-first">Accueil</Link>
                 </Accordion>
             </Container>
-                {articlePart.map((item, index) => <AccordionComponent key={index} title={item.title} subtitle={item.subitle} sendData={getData} sendArticle={getArticleId} />)}
+                {articlePart.map((item, index) => <AccordionComponent key={index} title={item.title} subtitle={item.subitle}  sendData={getData}/>)}
             </Grid>
             <Grid item xs={10} className="admin_body_center">
                 {display()}

@@ -21,7 +21,7 @@ const CategoryLoop = ({getName, refreshPage}) => {
     const displayCategoryIcons = (name) => {
         switch(name){
             case "Voyages":
-                return <FlightIcon  fontSize="large" label="Voyages" sx={{ color: "white" }}/>;
+                return <FlightIcon fontSize="large" label="Voyages" sx={{ color: "white" }}/>;
             case "Technologies":
                 return <SettingsEthernetIcon fontSize="large" label="Technologies" sx={{ color: "white" }}/>;
             case "Sorties":

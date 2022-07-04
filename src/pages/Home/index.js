@@ -1,12 +1,18 @@
 
-  import React, { useEffect,useState } from 'react';
+  import React, { useEffect,useState, useContext } from 'react';
   import axios from 'axios';
+  import {authContext} from '../../components/Contexts/authContext';
+  import Footer from '../../components/Footer';
 
 
 import { Container, Typography, Grid, Link } from "@mui/material";
 import ArticleCard from '../../components/Article/ArticleCard';
 
 function Home() {
+
+  const {auth, setTokenToContext} = useContext(authContext);
+
+  console.log("auth:" , auth);
 
   const url = "http://localhost:8080/lastArticles";
 
@@ -70,8 +76,9 @@ function Home() {
               <ArticleCard title="Article 1" /> 
           </Grid>
       </Grid>
-
+      <Footer />
     </Container>
+
   );
 }
 

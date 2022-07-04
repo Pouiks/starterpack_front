@@ -1,0 +1,12 @@
+.footer_container{
+    height: 200px;
+    margin-top: 30px;
+    padding: 20px 0;
+    background-color: #EEF8F3;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer_button{
+    text-decoration: none;
+}

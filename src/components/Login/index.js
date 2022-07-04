@@ -1,5 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
 import {useNavigate} from 'react-router-dom';
+import { authContext } from '../Contexts/authContext';
 import Home from '../../pages/Home';
 import axios from 'axios';
 import FormControl from '@mui/material/FormControl';
@@ -7,10 +8,16 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import logo from "./../../components/Header/mspLogo.png";
+import './login.css';
+
 
 const Login = ({changePage, setToken}) => {
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {auth, setTokenToContext} = useContext(authContext);
+    console.log("AUTH:", auth);
 
   
     const handleEmailChange = (e) => {
@@ -23,12 +30,21 @@ const Login = ({changePage, setToken}) => {
 
     const login = async () => {
       try{
+        if (email == "" || password == ""){
+          return alert("Probleme d'identifnat");
+        }
+        console.log(email, password)
         const tryLogin = await axios.post('http://localhost:8080/api/authenticate', {
           email,
           password
         })
-        localStorage.setItem("email", JSON.stringify(email));
-        setToken(email);
+        if(tryLogin){
+          setTokenToContext(tryLogin.data.token);
+          
+        }
+        setTimeout(() => navigate("/"), "5000");
+        // localStorage.setItem("email", JSON.stringify(email));
+        // setToken(email);
         // const token = tryLogin.data.accessToken;
         // sessionStorage.setItem("token", JSON.stringify(token));
         // sessionStorage.setItem("token", JSON.stringify(tryLogin.data.accessToken));
@@ -41,9 +57,11 @@ const Login = ({changePage, setToken}) => {
     return(
         <>
         <Typography variant="h5">Connexion à mon compte</Typography> 
+        <img className="msp_logo" src={logo} width="400"/>
         <FormControl sx={{display:"flex", justifyContent:"space-between"}}>
           <TextField
               label="Votre adresse email"
+              name="email"
               required
               sx={{margin:"10px 0"}}
               value={email}
@@ -52,6 +70,7 @@ const Login = ({changePage, setToken}) => {
           <TextField
            label="Saisissez votre mot de passe"
               type="password"
+              name="password"
               required
               sx={{margin:"10px 0"}}
               value={password}
@@ -61,7 +80,10 @@ const Login = ({changePage, setToken}) => {
             variant="contained"
             color="success"
             sx={{margin:"20px 0"}}
-            onClick={() => login()}
+            onClick={() =>{
+              changePage("confirmationMail")
+              login()
+            } }
           >Connexion</Button>
 
           <Link 

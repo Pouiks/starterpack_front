@@ -6,6 +6,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import logo from "./../../components/Header/mspLogo.png"
+import './createAccount.css';
 
     
 const CreateAccount = ({changePage}) => {
@@ -66,6 +68,8 @@ const CreateAccount = ({changePage}) => {
     return(
         <>
         <Typography variant="h5">Création d'un compte</Typography> 
+        <img src={logo} width="350" className="msp_logo"/>
+
         <FormControl sx={{display:"flex", justifyContent:"space-between"}}>
           <TextField
               label="Un prénom"

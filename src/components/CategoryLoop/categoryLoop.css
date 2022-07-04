@@ -4,10 +4,13 @@
     padding: 10px 20px;
     border-radius: 5px;
     margin: 0 5px;
-    background-color: orange;
+    background-color: #F57F5B;
+    box-shadow: -1px 5px 17px -1px rgba(0,0,0,0.52);
+    -webkit-box-shadow: -1px 5px 17px -1px rgba(0,0,0,0.52);
+    -moz-box-shadow: -1px 5px 17px -1px rgba(0,0,0,0.52);
     cursor: grab;
 }
 
 .category_icon:hover{
-    background-color: rgb(247, 183, 65);
+    background-color: #f16940;
 }
