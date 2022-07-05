@@ -7,7 +7,7 @@ const ArticleTemplate = ({article}) => {
 
     useEffect(() => {
 
-    }, [])
+    })
 
     return(
         <Container>
@@ -16,7 +16,7 @@ const ArticleTemplate = ({article}) => {
                 <Chip label="Voyages" color="warning" sx={{color:"white"}}/>
                 <Typography variant="body4" color="text.secondary" sx={{marginLeft: '10px'}}>September 14, 2016 | 5 min to read </Typography>
                 <Typography variant="body4" color="text.secondary" sx={{marginLeft: '10px'}}> publié par <b>Admin</b></Typography>
-                <Typography><FavoriteIcon  sx={{marginLeft: '10px', color: 'red'}} /> 51 </Typography>
+                <Typography><FavoriteIcon  sx={{marginLeft: '10px', color: 'red'}} /> {article.like} </Typography>
                 <div style={{margin:"0 20px"}} class="fb-share-button" data-href="http://localhost:8080" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A8080%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Partager</a></div>
             </Container>
 

@@ -5,27 +5,37 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-const ArticleCardMini = () => {
+const ArticleCardMini = ( { content, parent } ) => {
+    console.log("JE SUSI ITEM", content);
     return (
-        <Card sx={{ maxWidth: 345, margin: '20px 0' }} >
+        <>
+        {
+            content.id != parent ?
+            <Card sx={{ maxWidth: 345, margin: '20px 0' }} >
             <CardActionArea>
-            <CardMedia
-                component="img"
-                height="140"
-                image="https://picsum.photos/400/200"
-                alt="green iguana"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                Lizard
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
-                </Typography>
-            </CardContent>
-            </CardActionArea>
-        </Card>
+                    <CardMedia
+                    component="img"
+                    height="140"
+                    image={content.image}
+                    alt="green iguana"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                    {content.title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {content.description}
+                    </Typography>
+                </CardContent>
+                </CardActionArea>
+            </Card>
+            :
+            <Typography>Aucune suggestions</Typography>
+        }
+
+
+
+</>
     );
 
 

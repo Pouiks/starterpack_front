@@ -35,7 +35,7 @@ const getDate = () => {
   }
 }
   return (
-    <Link to={`/article/${item.id}`} state= {{title: item.title, description: item.description, content: item.content}} className="articleCard_link">
+    <Link to={`/article/${item.id}`} state= {{articleId: item.id ,title: item.title,categoryId: item.category_id, category: item.category_name, like: item.like, author: item.author, description: item.description, content: item.content}} className="articleCard_link">
 
       <Card sx={{ maxWidth: 305, maxHeight:550, minHeight:500, marginTop: 5, boxShadow:4}} onClick={() => console.log(item.id)}>
       <CardActionArea>

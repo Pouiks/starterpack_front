@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, {createContext, useEffect, useState} from 'react';
-import {useNavigate} from 'react-router-dom';
 
 export const authContext = createContext({});
 
@@ -18,6 +17,15 @@ const AuthProvider = ({ children }) => {
 
     const setUserDataToContext = (userData) => {
         setAuth({...auth, user: userData});
+        localStorage.setItem('email', userData.email);
+        localStorage.setItem('name', userData.name);
+    }
+
+    const resetContextData = () => {
+        console.log("disconnect");
+        setAuth({token: null, user:null});
+        localStorage.clear();
+        
     }
 
     useEffect(() => {
@@ -32,9 +40,10 @@ const AuthProvider = ({ children }) => {
         }
 
     }, [auth.token]);
-
+    
+    // localStorage
     return (
-        <authContext.Provider value={{auth, setTokenToContext, setUserDataToContext}}>
+        <authContext.Provider value={{auth, setTokenToContext, setUserDataToContext, resetContextData}}>
             {children}
         </authContext.Provider>
     )

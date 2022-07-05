@@ -19,11 +19,18 @@ const SelectedArticle = () => {
     const url = "http://localhost:8080/article/";
 
     const [article, setArticle] = useState();
+    const [suggestions, setSuggestions] = useState();
     const [refreshPage, setRefreshPage] = useState(false);
 
     const getArticle = async (id) => {
         const response = await axios.get(`${url}${id}`);
         setArticle(response.data.article);
+    }
+
+    const articleSuggestions = async (categoryId) => {
+        const response = await axios.get(`http://localhost:8080/articlesByCategory/${categoryId}`);
+        setSuggestions(response.data.articles);
+        console.log(response.data);
     }
     const refresh = () => {
         setRefreshPage(!refreshPage);
@@ -32,6 +39,7 @@ const SelectedArticle = () => {
 
     useEffect(() => {
         getArticle(id);
+        articleSuggestions(state.categoryId);
     }, [refreshPage])
 
     console.log("state", state);
@@ -60,11 +68,15 @@ const SelectedArticle = () => {
 
                     <Container sx={{maxHeight: '90vh', scrollBehavior: "smooth", overflow: "scroll"}}>
                     
-                        <ArticleCardMini />
-                        <ArticleCardMini />
-                        <ArticleCardMini />
-                        <ArticleCardMini />
-                        <ArticleCardMini />
+                    {
+                        suggestions && 
+                        suggestions.map((item) => (
+                            
+                            <ArticleCardMini content={item} key={item.id} parent={state.articleId}/>
+                        ) )
+                    }
+                        
+
                     </Container>
                 </Container>
             </Grid>

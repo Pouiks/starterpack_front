@@ -8,11 +8,15 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
+import CircularProgress from '@mui/material/CircularProgress';
 import logo from "./../../components/Header/mspLogo.png";
 import './login.css';
 
 
 const Login = ({changePage, setToken}) => {
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -34,6 +38,7 @@ const Login = ({changePage, setToken}) => {
           return alert("Probleme d'identifnat");
         }
         console.log(email, password)
+        setLoading(true);
         const tryLogin = await axios.post('http://localhost:8080/api/authenticate', {
           email,
           password
@@ -42,7 +47,8 @@ const Login = ({changePage, setToken}) => {
           setTokenToContext(tryLogin.data.token);
           
         }
-        setTimeout(() => navigate("/"), "5000");
+        setTimeout(() => navigate("/"), "2500");
+        setLoading(false);
         // localStorage.setItem("email", JSON.stringify(email));
         // setToken(email);
         // const token = tryLogin.data.accessToken;
@@ -76,7 +82,8 @@ const Login = ({changePage, setToken}) => {
               value={password}
               onChange={handlePasswordChange}
             />
-          <Button
+
+            <Button
             variant="contained"
             color="success"
             sx={{margin:"20px 0"}}
@@ -85,6 +92,8 @@ const Login = ({changePage, setToken}) => {
               login()
             } }
           >Connexion</Button>
+
+
 
           <Link 
           onClick={() => changePage("forgot")}

@@ -1,8 +1,12 @@
 import React, {useEffect, useState, useContext} from 'react';
 import { authContext } from '../Contexts/authContext';
+import { useNavigate } from 'react-router-dom';
+
 
 import { AppBar, Toolbar, Button, Typography, Container, Box, Divider, List, ListItem, ListItemButton, ListItemText, IconButton, Drawer } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import LogoutIcon from '@mui/icons-material/Logout';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 
 import { Link } from "react-router-dom";
@@ -13,7 +17,10 @@ const drawerWidth = 240;
 const navItems = ['Rechercher par catégories', 'Connexion', 'Contact'];
 
 function Header(props,{user}) {
-  const { auth } = useContext(authContext);
+  const name = localStorage.getItem('name');
+  const navigate = useNavigate();
+
+  const { auth, resetContextData } = useContext(authContext);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -21,6 +28,14 @@ function Header(props,{user}) {
     console.log("try to open");
     setMobileOpen(!mobileOpen);
   };
+
+  const goToProfil = () => {
+    navigate('/profile');
+  }
+  const logOut = () => {
+    resetContextData();
+    navigate('/');
+  }
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }} >
@@ -40,8 +55,11 @@ function Header(props,{user}) {
     </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
 
+  const container = window !== undefined ? () => window().document.body : undefined;
+ useEffect(()=>{
+
+ }, [name])
   return (
       <AppBar component="header" sx={{ mb: 4 ,position:{xs:"relative", sm:"relative", xl:"sticky"}, fontWeight: "bold"}} >
           <Toolbar className="header-toolbar" >
@@ -56,9 +74,10 @@ function Header(props,{user}) {
           <Container maxWidth="lg" sx={{display:{xs:"none",sm:"none", md:"flex",lg:"flex", xl:"flex"}, justifyContent: 'space-around'}}>
               <Button color="inherit" component={Link} to="/articles">Rechercher par catégorie</Button>
               <Button color="inherit" component={Link} to="/end-rent">Proposer un starterPack</Button>
-              { auth.user  ? <Typography>Bienvenue {auth.user.name}</Typography> : <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
+              { name ? <Typography>Bienvenue {name}</Typography> : <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
               }
-              {auth.user ? <Button color="inherit" component={Link} to="/end-rent">Me deconnecter</Button> : null }
+              {name && <AccountBoxIcon sx={{cursor:"pointer"}} onClick={goToProfil} /> }
+              {name && <LogoutIcon sx={{cursor:"pointer"}} onClick={logOut} /> }
 
           </Container>
         </Toolbar>
