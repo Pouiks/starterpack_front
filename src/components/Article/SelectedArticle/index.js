@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import { useLocation } from 'react-router-dom';
+import baseUrl from "../../../config/baseUrl.js";
+import { authContext } from '../../Contexts/authContext';
 import { Container, Typography, Grid, Divider } from "@mui/material";
 import ArticleCardMini from '../ArticleCardMini';
 import ArticleTemplate from '../ArticleTemplate';
@@ -11,12 +13,13 @@ import axios from 'axios';
 import './selectedArticle.css';
 
 const SelectedArticle = () => {
+    const { auth, resetContextData } = useContext(authContext);
 
     const location = useLocation()
     const state = location.state
     const { id } = useParams();
 
-    const url = "http://localhost:8080/article/";
+    const url = `${baseUrl}/article/`;
 
     const [article, setArticle] = useState();
     const [suggestions, setSuggestions] = useState();
@@ -28,7 +31,7 @@ const SelectedArticle = () => {
     }
 
     const articleSuggestions = async (categoryId) => {
-        const response = await axios.get(`http://localhost:8080/articlesByCategory/${categoryId}`);
+        const response = await axios.get(`${baseUrl}/articlesByCategory/${categoryId}`);
         setSuggestions(response.data.articles);
         console.log(response.data);
     }
@@ -56,8 +59,10 @@ const SelectedArticle = () => {
             <Spacer taille={"50px"}/>
             <Divider />
             <Spacer taille={"50px"}/>
+            { auth.user && 
 
             <AddComment articleId={id} refresh={refresh}/>
+            }
 
             </Container>
             </Grid>

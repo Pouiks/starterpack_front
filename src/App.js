@@ -36,11 +36,12 @@ function App() {
         <Route path="/connexion" element={<SignOrCreate />} />
         <Route path="/reset-password" element={<ForgotPassword />} />
 
-        <Route path="/admin/editor" element={
+        {/* <Route path="/admin/editor" element={
           <PrivateAdminRoute>
             <Admin />
           </PrivateAdminRoute>
-        } />
+        } /> */}
+        <Route path="/admin/editor" element={<Admin />} />
         <Route path="*" />
       </Routes>
 

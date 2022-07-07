@@ -1,10 +1,12 @@
 
 import React, { useState, useReducer, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Container, Typography, Grid, Link } from "@mui/material";
 import Accordion from '@mui/material/Accordion';
 import AdminTable from './AdminTable';
 import CreateArticle from './CreateArticle';
 import ArticlePreview from './ArticlePreview';
+import Tools from './Tools';
 
 import AccordionComponent from './AccordionComponent';
 import './admin.css';
@@ -12,11 +14,12 @@ import './admin.css';
 
 function Admin () {
 
+    const navigate = useNavigate();
     const articlePart = [
         {
             id: "2",
             title: "Article",
-            subitle:[
+            subtitle:[
                 {
                     title:"Creer un article",
                     link:"createArticle"
@@ -35,7 +38,7 @@ function Admin () {
         {
             id: "3",
             title: "Utilisateur",
-            subitle:[
+            subtitle:[
                 {
                     title:"Creer un Utilisateur",
                     link:"createArticle"
@@ -54,7 +57,7 @@ function Admin () {
         {
             id: "4",
             title: "Categories",
-            subitle:[
+            subtitle:[
                 {
                     title:"Creer un Categories",
                     link:""
@@ -73,7 +76,7 @@ function Admin () {
         {
             id: "4",
             title: "Commentaires",
-            subitle:[
+            subtitle:[
                 {
                     title:"Creer un Commentaires",
                     link:""
@@ -89,6 +92,17 @@ function Admin () {
             ],
             noIcon: false
         },
+        {
+            id:"5",
+            title:"Outils à disposition",
+            subtitle:[
+                {
+                    title:"Tout les outils",
+                    link:"tools"
+                }
+            ],
+            noIcon: true
+        }
     ]
     const [displayPage, setDisplayPage] = useState("");
     const [articleId, setArticleId] = useState("");
@@ -103,6 +117,8 @@ function Admin () {
                 return <CreateArticle sendData={getData}/>;
             case "articlePreview": 
                 return <ArticlePreview sendData={getData} />;
+            case "tools":
+                return <Tools sendData={getData}/>;
         }
     }
     function getData(val, id){
@@ -131,7 +147,7 @@ function Admin () {
                     <Link onClick={() => setDisplayPage("accueil")} className="admin_body_accordion-first">Accueil</Link>
                 </Accordion>
             </Container>
-                {articlePart.map((item, index) => <AccordionComponent key={index} title={item.title} subtitle={item.subitle}  sendData={getData}/>)}
+                {articlePart.map((item, index) => <AccordionComponent key={index} title={item.title} subtitle={item.subtitle}  sendData={getData}/>)}
             </Grid>
             <Grid item xs={10} className="admin_body_center">
                 {display()}

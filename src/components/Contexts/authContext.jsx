@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, {createContext, useEffect, useState} from 'react';
+import baseUrl from "../../config/baseUrl.js";
+
 
 export const authContext = createContext({});
 
@@ -32,7 +34,7 @@ const AuthProvider = ({ children }) => {
         if(auth.token) {
             axios({
                 method: "post",
-                url:"http://localhost:8080/api/authorization",
+                url:`${baseUrl}/api/authorization`,
                 headers: {
                     Authorization: `Bearer ${auth.token}`
                 }

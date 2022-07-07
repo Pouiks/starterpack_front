@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import baseUrl from "../../config/baseUrl.js";
 
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
@@ -35,7 +36,7 @@ const CreateAccount = ({changePage}) => {
     const handleSend = async (email) => {
       setSent(true);
       try {
-         await axios.post("http://localhost:8080/send_mail", {
+         await axios.post(`${baseUrl}/send_mail`, {
           email
         })
         console.log("email sent")
@@ -49,7 +50,7 @@ const CreateAccount = ({changePage}) => {
       if(password != confirmPassword) {
         setError('Les mots de passe ne correspondent pas');
       } else {
-        await axios.post('http://localhost:8080/user/create', {
+        await axios.post(`${baseUrl}/user/create`, {
           name: name,
           email: email,
           password: password,

@@ -12,7 +12,7 @@ const Footer = () => {
         <Container maxWidth="xl">
             <Grid max-width="xl" class="footer_container">
 
-                <Grid item xs={12} xl={4}>
+                <Grid item xs={12} xl={4} sx={{display: 'flex', flexDirection: 'column'}}>
                     <Typography variant="h4">Le site</Typography>
                     <Link class="footer_button">A propos</Link>
                     <Link class="footer_button">L'équipe</Link>

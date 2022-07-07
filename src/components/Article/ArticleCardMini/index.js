@@ -3,6 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 import { CardActionArea } from '@mui/material';
 
 const ArticleCardMini = ( { content, parent } ) => {
@@ -11,6 +12,8 @@ const ArticleCardMini = ( { content, parent } ) => {
         <>
         {
             content.id != parent ?
+            <Link to={`/article/${content.id}`} state= {{articleId: content.id ,title: content.title,categoryId: content.category_id, category: content.category_name, like: content.like, author: content.author, description: content.description, content: content.content}} className="articleCard_link">
+
             <Card sx={{ maxWidth: 345, margin: '20px 0' }} >
             <CardActionArea>
                     <CardMedia
@@ -29,6 +32,7 @@ const ArticleCardMini = ( { content, parent } ) => {
                 </CardContent>
                 </CardActionArea>
             </Card>
+            </Link>
             :
             <Typography>Aucune suggestions</Typography>
         }

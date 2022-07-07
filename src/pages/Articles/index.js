@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useMemo} from "react";
+import baseUrl from "../../config/baseUrl.js";
 import { Container, Typography, Grid, Link } from "@mui/material";
 import ArticleCard from "../../components/Article/ArticleCard"
 import CategoryLoop from "../../components/CategoryLoop"
@@ -12,7 +13,7 @@ const Articles = () => {
     const [refresh, setRefresh] = useState(false);
 
     const fetchData = async () => {
-        const URL = 'http://localhost:8080/articles';
+        const URL = `${baseUrl}/articles`;
         const response = await axios.get(URL);
   
         setData(response.data);
@@ -47,7 +48,7 @@ const Articles = () => {
     }, [refresh])
     
     return(
-        <Container maxWidth="xl" sx={{alignItems:"center"}}>
+        <Container maxWidth="xl" sx={{alignItems:"center", mb:"100px"}}>
             <Container maxWidth="xl">
                 <CategoryLoop getName={getName} refreshPage={refreshPage}/>
             </Container>

@@ -1,4 +1,6 @@
 import React, {useEffect, useState, useContext} from 'react';
+import baseUrl from "../../config/baseUrl.js";
+
 import {useNavigate} from 'react-router-dom';
 import { authContext } from '../Contexts/authContext';
 import Home from '../../pages/Home';
@@ -39,7 +41,7 @@ const Login = ({changePage, setToken}) => {
         }
         console.log(email, password)
         setLoading(true);
-        const tryLogin = await axios.post('http://localhost:8080/api/authenticate', {
+        const tryLogin = await axios.post(`${baseUrl}/api/authenticate`, {
           email,
           password
         })

@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import baseUrl from "../../config/baseUrl.js";
+
 import FlightIcon from '@mui/icons-material/Flight';
 import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
 import NightlifeIcon from '@mui/icons-material/Nightlife';
@@ -43,7 +45,7 @@ const CategoryLoop = ({getName, refreshPage}) => {
         refreshPage();
     }
     const fetchCategories = async () => {
-        const URL = "http://localhost:8080/categories";
+        const URL = `${baseUrl}/categories`;
         const response = await axios.get(URL);
         setCategories(response.data.categories);
     

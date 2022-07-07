@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import baseUrl from '../../config/baseUrl.js';
+
 import axios from 'axios';
 import {FormControl,Container,Typography, TextField, Button} from '@mui/material';
 import Spacer from '../Spacer';
@@ -18,7 +20,7 @@ const AddComment = ({articleId, refresh}) => {
     const emmitComment = async (value) => {
         
         console.log(value);
-        const comment = await axios.post('http://localhost:8080/comment/create', {
+        const comment = await axios.post(`${baseUrl}/comment/create`, {
             content: value,
             user_id: "1",
             article_id: articleId
@@ -31,7 +33,7 @@ const AddComment = ({articleId, refresh}) => {
         console.log(allComments);
     }
     const getComments =  () => {
-        axios.get(`http://localhost:8080/article/${articleId}/comments`).then((results) => {
+        axios.get(`${baseUrl}/article/${articleId}/comments`).then((results) => {
             setAllComments(results.data.articleComments);
         });
         

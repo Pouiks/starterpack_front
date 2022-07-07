@@ -3,8 +3,10 @@ import { Navigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 
 
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -47,7 +49,11 @@ const getDate = () => {
           alt="Image de l'article"
         />
           <CardContent sx={{minHeight:50, maxHeight:110}}>
-          <Chip label={item.category_name}  sx={{color:"white", bgcolor:"#F57F5B"}}/>
+          <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Chip label={item.category_name}  sx={{color:"white", bgcolor:"#F57F5B"}}/>
+            <Typography sx={{justifySelf: "flex-end"}}><FavoriteIcon  sx={{marginLeft: '10px', color: 'red'}} /> {item.like} </Typography>
+
+          </div>
             <Typography variant="h6" color="text.secondary">
               {item.title} 
             </Typography>

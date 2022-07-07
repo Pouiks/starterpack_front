@@ -3,7 +3,7 @@
   import axios from 'axios';
   import {authContext} from '../../components/Contexts/authContext';
   import Footer from '../../components/Footer';
-
+  import baseUrl from '../../config/baseUrl.js';
 
 import { Container, Typography, Grid, Link } from "@mui/material";
 import ArticleCard from '../../components/Article/ArticleCard';
@@ -14,22 +14,29 @@ function Home() {
 
   console.log("auth:" , auth);
 
-  const url = "http://localhost:8080/lastArticles";
 
     const [data, setData] = useState([]);
+    const [mostLiked, setMostLiked] = useState([]);
 
     const fetchData = async () => {
-      const response = await axios.get(url);
+      const response = await axios.get(`${baseUrl}/lastArticles`);
       console.log("je lance une requete ARTICLES");
 
       console.log("response.data.articles",response.data);
       setData(response.data);
     }
 
+    const getMostLikedArticles = async() => {
+      const response = await axios.get(`${baseUrl}/articles/mostLiked`);
+      setMostLiked(response.data.bestArticles);
+      console.log("LES PLUS LIKE: ",response.data);
+    }
+
 
     useEffect(() => {
       console.log('init Home');
       fetchData();
+      getMostLikedArticles();
 
     }, []);
 
@@ -57,24 +64,14 @@ function Home() {
           </Typography>
       </Container>
       <Grid container maxWidth="xl" direction="row" sx={{display:"flex", verticalAlignment:"center", justifyContent: "center"}}>
+        {
+          mostLiked && 
+            mostLiked.map((article) =>  
           <Grid item xl={3}>
-              <ArticleCard title="Article 1" /> 
+            <ArticleCard key={article.id} {...article}/>
           </Grid>
-          <Grid item xl={3}>
-              <ArticleCard title="Article 1" /> 
-          </Grid>
-          <Grid item xl={3}>
-              <ArticleCard title="Article 1" /> 
-          </Grid>
-          <Grid item xl={3}>
-              <ArticleCard title="Article 1" /> 
-          </Grid>
-          <Grid item xl={3}>
-              <ArticleCard title="Article 1" /> 
-          </Grid>
-          <Grid item xl={3}>
-              <ArticleCard title="Article 1" /> 
-          </Grid>
+          ) 
+        }
       </Grid>
       <Footer />
     </Container>

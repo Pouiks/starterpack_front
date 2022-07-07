@@ -1,6 +1,6 @@
 import React, { useEffect,useState, useParams } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import baseUrl from '../../../config/baseUrl';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -18,7 +18,6 @@ import axios from 'axios';
 
 
 const AdminTable = ({sendData, getArticleId}) => {
-    const baseUrl = "http://localhost:8080";
 
     const [refresh, setRefresh] = useState(false);
 
