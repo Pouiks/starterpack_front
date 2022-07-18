@@ -5,6 +5,7 @@ import { authContext } from '../../Contexts/authContext';
 import { Container, Typography, Grid, Divider } from "@mui/material";
 import ArticleCardMini from '../ArticleCardMini';
 import ArticleTemplate from '../ArticleTemplate';
+import AuthorCard from '../../AuthorCard';
 import Spacer from '../../Spacer';
 import AddComment from '../../AddComment';
 import CategoryLoop from '../../CategoryLoop';
@@ -45,14 +46,13 @@ const SelectedArticle = () => {
         articleSuggestions(state.categoryId);
     }, [refreshPage])
 
-    console.log("state", state);
     return(
         <Container maxWidth="xl" sx={{display:'flex', flexDirection:'column', bgcolor:"#F5FFFA"}}>
 
     
-        <Grid container  spacing={1}>
+        <Grid container  spacing={2}>
 
-            <Grid item xl={10} >
+            <Grid item xl={11} >
             <Container maxWidth="xl">
 
             <ArticleTemplate article={state}/>
@@ -63,10 +63,10 @@ const SelectedArticle = () => {
 
             <AddComment articleId={id} refresh={refresh}/>
             }
-
+            <AuthorCard />
             </Container>
             </Grid>
-            <Grid item xl={2} sx={{  scrollable: true}}>
+            <Grid item xl={1} sx={{  scrollable: true}}>
                 <Container  sx={{display:"flex", flexDirection:"column", borderLeft:"1rem solid orange", height:"80vh", position:"fixed"}}>
                     <Typography variant="h4">Suggestions</Typography>
                     <Divider sx={{margin:"20px 0", width:"30%", color:"orange"}}/>

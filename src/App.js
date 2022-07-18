@@ -3,6 +3,7 @@ import { CssBaseline } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import SelectedArticle from './components/Article/SelectedArticle';
+import FollowTheTeam from './components/FollowTheTeam';
 import Header from './components/Header';
 import Profile from './components/Profile';
 
@@ -27,6 +28,7 @@ function App() {
       <Routes>
 
         <Route path="/" element={<Home />} />
+        <Route path="/proposeTonAide" element={<FollowTheTeam />} />
         <Route path="/profile" element={
           <PrivateRoute>
             <Profile />

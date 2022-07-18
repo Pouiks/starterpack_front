@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { CardActionArea } from '@mui/material';
 
 const ArticleCardMini = ( { content, parent } ) => {
-    console.log("JE SUSI ITEM", content);
     return (
         <>
         {
@@ -34,7 +33,7 @@ const ArticleCardMini = ( { content, parent } ) => {
             </Card>
             </Link>
             :
-            <Typography>Aucune suggestions</Typography>
+            null
         }
 
 

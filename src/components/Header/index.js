@@ -73,7 +73,7 @@ function Header(props,{user}) {
               <Button color="inherit" component={Link} to="/"><img src={logo} width="150" alt="logo du site" component={Link} to="/"/></Button>
           <Container maxWidth="lg" sx={{display:{xs:"none",sm:"none", md:"flex",lg:"flex", xl:"flex"}, justifyContent: 'space-around'}}>
               <Button color="inherit" component={Link} to="/articles">Rechercher par catégorie</Button>
-              <Button color="inherit" component={Link} to="/end-rent">Proposer un starterPack</Button>
+              <Button color="inherit" component={Link} to="/proposeTonAide">Proposer un starterPack</Button>
               { name ? <Typography>Bienvenue {name}</Typography> : <Button color="inherit" component={Link} to="/connexion">Connexion / Creer mon compte</Button>
               }
               {name && <AccountBoxIcon sx={{cursor:"pointer"}} onClick={goToProfil} /> }
